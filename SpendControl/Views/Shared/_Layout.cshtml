@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SpendControl</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/fontawesome/css/all.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img alt="Search Icon" src="~/assets/logo.png" style="height: 50px"/>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Головна</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Warehouses" asp-action="Index">Склади</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Transportations" asp-action="Index">Перевезення</a>
+                        </li>
+                        <li>
+                            <div class="dropdown show">
+                              <a class="btn dropdown-toggle p-2" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="box-shadow: none">
+                                Про нас
+                              </a>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="AboutCompany">Про компанію</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Partnership">Партнерство</a>
+                              </div>
+                            </div>
+                        </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">Користувачі</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                
+            </div>
+            <partial name="_LoginPartial" />
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted p-6" style="line-height: 30px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <h6>&copy; 2022 - SpendControl - </h6>
+                    <p class="p-0 m-0 ">Всі права захищені.</p>
+                    <p class="p-0 m-0 ">Використання матеріалів даного сайту можливе</p> 
+                    <p class="p-0 m-0 ">тільки з посиланням на джерело.</p>
+                </div>
+                <div class="col-3">
+                    <a class="btn-link p-1 " href="https://uk-ua.facebook.com/"><i class="fa-brands fa-facebook-square"></i></a>
+                    <a class="btn-link p-1" href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+                    <a class="btn-link p-1" href="https://www.linkedin.com/"><i class="fa-brands fa-linkedin"></i></a>
+                    <a class="btn-link p-1" href="https://github.com/"><i class="fa-brands fa-github-square"></i></a>
+                    <a class="btn-link p-1" href="https://web.telegram.org/z/"><i class="fa-brands fa-telegram"></i></a>
+                </div>
+                <div class="col-1">
+                    <a href="tel:063-283-05-57"><i class="fa-solid fa-phone"></i> 063-283-05-57</a>
+                    <br />
+                    <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=CllgCJvnHwHzPXXcBfcqPFzPQrGnmsRLLTXnrMgnhHnmpgpXrtMNsWgGMxQpKTXQGPSrkchNQkg">
+                        <i class="fa-solid fa-envelope"></i> maxsupport@gmail.com</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

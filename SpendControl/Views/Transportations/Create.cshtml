@@ -1,0 +1,71 @@
+﻿@model SpendControl.Controllers.ViewTransportationModel
+
+
+
+<div class="container border p-3">
+
+	
+	<h2 class="text-primary">Додати матеріал</h2>
+
+
+	<form method="post" asp-action="Create">
+
+		<div class="row">
+            <div class="col-8">
+                
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Transportation.Description"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Transportation.Description" class="form-control" />
+                        <span asp-validation-for="Transportation.Description" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Transportation.SenderWarehouse"></label>
+                    </div>
+                    <div class="col-8">
+                        @Html.DropDownListFor(model => model.SenderWarehouseId, Model.Warehouses)
+                                     
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Transportation.TargetWarehouse"></label>
+                    </div>
+                    <div class="col-8">
+                        @Html.DropDownListFor(model => model.TargetWarehouseId, Model.Warehouses)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-4 row">
+
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-100" value="Create"/>
+                        </div>
+                        <div class="col">
+                             <a asp-action="Index" class="btn btn-success w-100"><i class="fas fa-sign-out-alt"></i> Назад</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                @* Keep this empty *@
+            </div>
+        </div>
+
+	</form>
+
+	<br />
+
+</div>
+
+@section Scripts{ 
+
+    @{ <partial name="_ValidationScriptsPartial" /> }
+
+}
+

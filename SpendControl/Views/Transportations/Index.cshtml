@@ -1,0 +1,95 @@
+﻿@model IEnumerable<SpendControl.Models.Transportation>
+
+
+
+<div class="container p-3">
+
+	<div class="row pt-4">
+		<div class="col-6">
+			<h2 class="text-primary">Список транспортувань</h2>
+		</div>
+		<div class="col-6 text-right">
+			<a asp-controller="Transportations" asp-action="Create" class="btn btn-primary ">
+				<i class="fa-solid fa-plus"></i> Транспортувати матеріали зі складу</a>
+		</div>
+	</div>
+
+	<br />
+
+	
+	@if(Model != null && Model.Count() > 0){
+
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>
+						Опис
+					</th>
+					<th>
+						Склад відправник
+					</th>
+					<th>
+						Склад отримувач
+					</th>
+					<th>
+						Час відправки
+					</th>
+					<th>
+						Час отримання
+					</th>
+					<th>
+						Статус
+					</th>
+					<th>
+						Отримати
+					</th>
+				</tr>
+				
+			</thead>
+			<tbody>
+				@foreach(var transportation in Model){
+				<tr>
+					<td>@transportation.Description</td>
+					<td>@transportation.SenderWarehouse.Name</td>
+					<td>@transportation.TargetWarehouse.Name</td>
+					<td>@transportation.SendDate</td>
+
+					@if (@transportation.IsArrived) {
+						<td>
+							@transportation.ArrivalDate
+						</td>
+					}
+					else{
+						<td>
+							--
+						</td>
+					}
+
+					@if (@transportation.IsArrived) {
+						<td>
+							Перевезено
+						</td>
+					}
+					else{
+						<td>
+							Не перевезено
+						</td>
+					}
+						
+					<td>
+						@if(!@transportation.IsArrived){
+						<a asp-controller="Transportations" asp-route-Id="@transportation.Id" asp-action="Accept" class="btn btn-primary ">
+							<i class="fa-solid fa-check"></i></a>
+						}
+					</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+	}
+	else
+	{
+		<p>Поки немає перевезень</p>
+	}
+
+</div>
